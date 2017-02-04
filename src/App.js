@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Counter from './components/Counter'
+import Counter from './components/Counter';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {counterValue: 0}
+  static propTypes = {
+    unit: React.PropTypes.number,
   }
 
-  componentDidMount(){
-    this.setState({counterValue: this.state.counterValue + this.props.unit})
+  constructor(props) {
+    super(props);
+    this.state = { counterValue: 0 };
   }
-  
+
+  componentWillMount() {
+    this.setState({ counterValue: this.state.counterValue + this.props.unit });
+  }
+
   render() {
     return (
       <div className="App">
@@ -22,8 +26,8 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
 
-        <Counter value={this.state.counterValue}/>
-        
+        <Counter value={this.state.counterValue} />
+
       </div>
     );
   }
