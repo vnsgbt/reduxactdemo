@@ -10,11 +10,23 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { counterValue: 0 };
+    this.state = { counterValue: 5 };
   }
 
   componentWillMount() {
+    this.increment();
+  }
+
+  componentDidMount() {
+    this.state.counterValue = 0;
+  }
+
+  increment = () => {
     this.setState({ counterValue: this.state.counterValue + this.props.unit });
+  }
+
+  decrement = () => {
+    this.setState({ counterValue: this.state.counterValue - this.props.unit });
   }
 
   render() {
@@ -26,7 +38,11 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
 
-        <Counter value={this.state.counterValue} />
+        <Counter
+          value={this.state.counterValue}
+          onIncrement={ this.increment }
+          onDecrement={ this.decrement }
+        />
 
       </div>
     );
