@@ -1,32 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Counter from './components/Counter';
 
 class App extends Component {
   static propTypes = {
-    unit: React.PropTypes.number,
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = { counterValue: 5 };
+    store: PropTypes.object.isRequired 
   }
 
   componentWillMount() {
-    this.increment();
-  }
-
-  componentDidMount() {
-    this.state.counterValue = 0;
-  }
-
-  increment = () => {
-    this.setState({ counterValue: this.state.counterValue + this.props.unit });
-  }
-
-  decrement = () => {
-    this.setState({ counterValue: this.state.counterValue - this.props.unit });
+    this.props.store.dispatch({type:'INC'});
   }
 
   render() {
@@ -39,9 +22,9 @@ class App extends Component {
         </div>
 
         <Counter
-          value={this.state.counterValue}
-          onIncrement={ this.increment }
-          onDecrement={ this.decrement }
+          value={this.props.store.getState().counterValue}
+          onIncrement={() => this.props.store.dispatch({type:'INC'}) }
+          onDecrement={() => this.props.store.dispatch({type:'DEC'}) }
         />
 
       </div>
