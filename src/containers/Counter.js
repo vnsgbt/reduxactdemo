@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CounterComponent from '../components/CounterComponent';
-import { increment, decrement } from '../actions';
+import { increment, decrement, incrAs, incrOdd } from '../actions';
 
 const mapState = (state) => ({
     value: state.counterValue,
@@ -10,6 +10,8 @@ const mapState = (state) => ({
 const mapDispatch = ({
     onIncrement: increment,
     onDecrement: decrement,
+    onIncrOdd: incrOdd,
+    onIncrAsync: incrAs
 });
 
 const Counter = connect(

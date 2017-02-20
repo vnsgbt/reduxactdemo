@@ -1,9 +1,14 @@
 
 import React, { PropTypes } from 'react'
 
-const TODO = ()=>{};
-
-const CounterComponent = ({value, onIncrement, onDecrement,async}) => (
+const CounterComponent = ({
+    value, 
+    onIncrement, 
+    onDecrement, 
+    async,
+    onIncrOdd,
+    onIncrAsync
+}) => (
         <div>
             <p> Clicked: {value} times {' '} </p>
             <p>
@@ -12,13 +17,13 @@ const CounterComponent = ({value, onIncrement, onDecrement,async}) => (
                 {
                     async &&
                     <span> {' '}
-                        <button onClick={TODO}> Inc odd </button> {' '}
-                        <button onClick={TODO}> Inc async </button>
+                        <button onClick={onIncrOdd}> Inc odd </button> {' '}
+                        <button onClick={onIncrAsync}> Inc async </button>
                     </span>
                 }
             </p>
         </div>
-)
+);
 
 CounterComponent.propTypes = {
     value: PropTypes.number.isRequired,
